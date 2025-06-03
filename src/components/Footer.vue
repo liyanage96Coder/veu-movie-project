@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-top">
       <div class="address">
-        <strong>Amadeus IT Group</strong>
+        <h2>Amadeus IT Group</h2>
         <p>
           C. Salvador de Madariaga, 1<br />
           28027 Madrid<br />
@@ -24,7 +24,9 @@
       <p>Copyright © {{ currentYear }} Amadeus Hotels. All rights reserved.</p>
       <p>
         Photos by
-        <a href="https://unsplash.com/@felixmooneeram" target="_blank" rel="noopener">Felix Mooneeram</a>
+        <a href="https://unsplash.com/@felixmooneeram" target="_blank" rel="noopener"
+          >Felix Mooneeram</a
+        >
         &amp;
         <a href="https://unsplash.com/@sergek" target="_blank" rel="noopener">Serge Kutuzov</a>
         on <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>
@@ -35,12 +37,12 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
   data() {
     return {
-      currentYear: new Date().getFullYear()
+      currentYear: new Date().getFullYear(),
     };
-  }
+  },
 };
 </script>
 
@@ -63,11 +65,13 @@ export default {
   margin: 0.5rem 0 0 0;
   line-height: 1.5;
   text-align: left;
+  font-size: 0.9rem;
 }
 
 .social {
   text-align: right;
   display: flex;
+  font-size: 1rem;
 }
 
 .social p {
@@ -97,6 +101,7 @@ hr {
   flex-wrap: wrap;
   font-size: 0.8rem;
   padding: 1rem 3rem;
+  font-size: 1rem;
 }
 
 .footer-bottom a {

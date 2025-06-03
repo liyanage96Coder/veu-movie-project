@@ -2,20 +2,20 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
+import HeroBanner from "./components/HeroBanner.vue";
+import Introduction from "./components/Introduction.vue";
+import ContactAndMap from "./components/Contact&Map.vue";
+import MovieGrid from "./components/MovieGrid.vue";
 </script>
 
 <template>
   <div class="layout">
     <Header />
     <main class="content">
-      <!-- Your content goes here -->
-      <a href="https://vite.dev" target="_blank">
-        <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-      <a href="https://vuejs.org/" target="_blank">
-        <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-      </a>
-      <HelloWorld msg="Vite + Vue" />
+      <HeroBanner />
+      <Introduction />
+      <MovieGrid />
+      <ContactAndMap />
     </main>
     <Footer />
   </div>
@@ -34,6 +34,7 @@ import Footer from "./components/Footer.vue";
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 .logo {
