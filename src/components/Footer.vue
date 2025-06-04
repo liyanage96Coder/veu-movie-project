@@ -51,6 +51,7 @@ export default {
   background-color: #1c1c1c;
   color: #e0e0e0;
   font-size: 0.9rem;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 .footer-top {
@@ -86,7 +87,7 @@ export default {
 .icons img {
   width: 24px;
   height: 24px;
-  filter: brightness(0) invert(1); /* Make white if SVG is dark */
+  filter: brightness(0) invert(1); 
 }
 
 hr {
@@ -102,10 +103,33 @@ hr {
   font-size: 0.8rem;
   padding: 1rem 3rem;
   font-size: 1rem;
+  color: #b4b3b3;
 }
 
 .footer-bottom a {
-  color: #ccc;
+  color: #b4b3b3;
   text-decoration: underline;
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .footer-bottom{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5rem;
+  }
+
+  .address p{
+    text-align: center;
+    font-size: medium;
+  }
 }
 </style>

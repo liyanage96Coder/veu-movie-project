@@ -16,9 +16,15 @@
   text-align: left;
   background-color: rgb(10, 10, 10);
   color: white;
-  font-family: "Arial", sans-serif;
+  font-family: "Roboto", sans-serif;
   padding: 100px;
-  padding-left: 350px;
+  padding-left: 40px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.introduction-text p {
+  color: rgb(197, 194, 194);
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .introduction-text-wrapper {

@@ -1,11 +1,14 @@
 <template>
   <div class="contact-map-container">
     <div class="contact-form">
-      <h2>How to reach us</h2>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur.</p>
+      <div class="contact-form-header">
+        <h2>How to reach us</h2>
+        <p class="description">Lorem ipsum dolor sit amet, consectetur.</p>
+      </div>
       <form @submit.prevent="submitForm" novalidate>
         <div class="input-row">
           <div class="field">
+            <p>First Name *</p>
             <input
               v-model="form.firstName"
               type="text"
@@ -15,6 +18,7 @@
             <p class="error-text" v-if="errors.firstName">{{ errors.firstName }}</p>
           </div>
           <div class="field">
+            <p>Last Name *</p>
             <input
               v-model="form.lastName"
               type="text"
@@ -26,6 +30,7 @@
         </div>
 
         <div class="field">
+          <p>Email *</p>
           <input
             v-model="form.email"
             type="email"
@@ -34,10 +39,11 @@
           />
           <p class="error-text" v-if="errors.email">{{ errors.email }}</p>
         </div>
-
+        <p>Telephone</p>
         <input v-model="form.phone" type="tel" placeholder="Telephone" />
 
         <div class="field">
+          <p>Message *</p>
           <textarea
             v-model="form.message"
             placeholder="Message *"
@@ -52,8 +58,9 @@
           <input v-model="form.agree" type="checkbox" id="agree" />
           <label for="agree"> I agree to the <a href="#">Terms & Conditions</a> </label>
         </div>
-
-        <button type="submit" :disabled="!form.agree">SUBMIT</button>
+        <div class="btn-wrapper">
+          <button type="submit" :disabled="!form.agree">SUBMIT</button>
+        </div>
       </form>
     </div>
 
@@ -131,8 +138,10 @@ const submitForm = () => {
 
 <style scoped>
 .contact-map-container {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva,
+    Verdana, sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 20px;
   background-color: #000;
   color: white;
@@ -141,23 +150,14 @@ const submitForm = () => {
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  .contact-map-container {
-    flex-direction: row;
-    padding: 40px 60px;
-  }
+.contact-form-header {
+  text-align: left;
 }
 
 .contact-form {
   flex: 1;
   max-width: 100%;
   padding: 0;
-}
-
-@media (min-width: 768px) {
-  .contact-form {
-    padding-right: 20px;
-  }
 }
 
 .contact-form h2 {
@@ -180,12 +180,6 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-@media (min-width: 600px) {
-  .input-row {
-    flex-direction: row;
-  }
 }
 
 .input-row .field {
@@ -233,8 +227,13 @@ textarea {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
-  flex-wrap: wrap;
+  color: #c9c9c9;
+}
+
+.checkbox-row input {
+  width: 15px;
+  height: 15px;
+  background-color: #000;
 }
 
 .checkbox-row a {
@@ -242,9 +241,15 @@ textarea {
   text-decoration: underline;
 }
 
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
 button {
   background-color: #d4a017;
-  color: black;
+  color: rgb(248, 244, 244);
   padding: 10px 20px;
   border: none;
   font-weight: bold;
@@ -252,6 +257,7 @@ button {
   cursor: pointer;
   font-size: 14px;
   align-self: flex-start;
+  width: 30%;
 }
 
 button:disabled {
@@ -263,12 +269,16 @@ button:disabled {
   flex: 1;
   min-height: 300px;
   padding: 0;
+  margin-top: 150px;
 }
 
-@media (min-width: 768px) {
-  .map-container {
-    padding-left: 20px;
-  }
+.map-container iframe {
+  border-radius: none !important;
+}
+
+form p {
+  text-align: left;
+  color: #acaaaa;
 }
 
 .map-container iframe {
@@ -276,5 +286,50 @@ button:disabled {
   height: 100%;
   border: none;
   border-radius: 4px;
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .contact-map-container {
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .map-container {
+    padding: 0px;
+    margin-top: 10px;
+    max-height: 50px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  .btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .contact-map-container {
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .map-container {
+    padding: 0px;
+    margin-top: 10px;
+    max-height: 100px;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
 }
 </style>

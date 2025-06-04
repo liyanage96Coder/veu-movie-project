@@ -2,23 +2,25 @@
   <div class="movie-grid-container">
     <div class="header">
       <h2>Collect your favourites</h2>
-      <input
-        type="text"
-        placeholder="🔍 Search title and add to grid"
-        v-model="searchQuery"
-      />
+      <div class="search-bar-wrapper">
+        <img src="../assets/Icons/Search White.svg" alt="search" class="search" />
+        <input
+          type="text"
+          placeholder="Search title and add to grid"
+          v-model="searchQuery"
+          @keyup.enter="addMovieFromAPI"
+        />
+      </div>
     </div>
     <hr />
 
     <div class="card-grid">
-      <div
-        v-for="(item, index) in filteredItems"
-        :key="index"
-        class="card"
-      >
+      <div v-for="(item, index) in cards" :key="index" class="singleCard">
         <div class="card-image">
           <img :src="item.image" :alt="item.title" />
-          <button class="close-btn" @click="removeCard(index)">✖</button>
+          <button class="close-btn" @click="removeCard(index)">
+            <img src="../assets/Icons/Close White.svg" alt="closeBtn" class="closeBtn" />
+          </button>
         </div>
         <div class="card-content">
           <h3>{{ item.title }}</h3>
@@ -30,36 +32,35 @@
 </template>
 
 <script setup>
-import { reactive, computed, ref } from 'vue';
+import { reactive, computed, ref, onMounted } from "vue";
+import { fetchMovieByTitle } from "../api/movieApi.js";
 
-const searchQuery = ref('');
+const cards = reactive([]);
 
-const cards = reactive([
-  {
-    title: 'Batman Returns',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut...',
-    image: 'https://via.placeholder.com/300x400?text=Batman',
-  },
-  {
-    title: 'Wild Wild West',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut...',
-    image: 'https://via.placeholder.com/300x400?text=Wild+West',
-  },
-  {
-    title: 'The Amazing Spiderman',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut...',
-    image: 'https://via.placeholder.com/300x400?text=Spiderman',
-  },
-]);
+const defaultTitles = ["Batman Returns", "Wild Wild West", "The Amazing Spiderman"];
 
-const filteredItems = computed(() =>
-  cards.filter((card) =>
-    card.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-  )
-);
+const loadInitialMovies = async () => {
+  for (const title of defaultTitles) {
+    const movie = await fetchMovieByTitle(title);
+    if (movie) {
+      cards.push(movie);
+    }
+  }
+};
+
+onMounted(() => {
+  loadInitialMovies();
+});
+
+const addMovieFromAPI = async () => {
+  const movie = await fetchMovieByTitle(searchQuery.value);
+  if (movie) {
+    cards.push(movie);
+    searchQuery.value = "";
+  }
+};
+
+const searchQuery = ref("");
 
 const removeCard = (index) => {
   cards.splice(index, 1);
@@ -87,7 +88,10 @@ const removeCard = (index) => {
   margin: 0;
 }
 
-.header input {
+.header .search-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-top: 10px;
   padding: 10px 15px;
   font-size: 14px;
@@ -99,6 +103,31 @@ const removeCard = (index) => {
   min-width: 250px;
   max-width: 300px;
 }
+.header .search-bar-wrapper img {
+  width: 15px;
+  height: 15px;
+}
+
+.header input {
+  font-size: 14px;
+  background-color: #111;
+  color: white;
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.header input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.header input::placeholder {
+  color: rgb(188, 186, 186);
+}
 
 .card-grid {
   display: grid;
@@ -106,7 +135,15 @@ const removeCard = (index) => {
   margin-top: 30px;
 }
 
-/* Responsive Grid Layout */
+.close-btn img {
+  opacity: 0.7;
+  width: 5px;
+  height: 5px;
+}
+
+.card-content {
+  text-align: left;
+}
 @media (min-width: 1024px) {
   .card-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -125,11 +162,12 @@ const removeCard = (index) => {
   }
 }
 
-.card {
-  background-color: #2c2c2c;
-  border-radius: 4px;
+.singleCard {
+  background-color: #525151;
   overflow: hidden;
   position: relative;
+  padding: none !important;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .card-image {

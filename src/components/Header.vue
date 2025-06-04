@@ -12,7 +12,6 @@
           <li v-if="!isMobile"><a href="#">SCHEDULE</a></li>
           <li v-if="!isMobile"><a href="#" class="active">MOVIE LIBRARY</a></li>
           <li v-if="isDesktop"><a href="#">LOCATION & CONTACT</a></li>
-          <!-- GALLERY always in hamburger only -->
         </ul>
       </nav>
       <div class="hamburger" @click="toggleMenu">
@@ -86,10 +85,11 @@ export default {
   background: #000;
   color: #fff;
   position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo-area img {
-  width: 200px;
+  width: 135px;
   height: 32px;
   object-fit: contain;
 }
@@ -104,13 +104,14 @@ export default {
 
 .nav-menu a {
   text-decoration: none;
-  color: white;
+  color: rgb(180, 176, 176);
   font-size: 0.9rem;
 }
 .nav-menu a:hover,
 .nav-menu a.active {
   text-decoration: underline;
   font-weight: bold;
+  color: white;
 }
 
 .nav-wrapper {
