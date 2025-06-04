@@ -285,7 +285,6 @@ form p {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 4px;
 }
 
 @media (min-width: 600px) and (max-width: 1023px) {
@@ -304,6 +303,11 @@ form p {
     max-height: 50px;
   }
 
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
 }
 
 @media (max-width: 767px) {
@@ -330,6 +334,12 @@ form p {
 
   .input-row {
     flex-direction: column;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
   }
 }
 </style>
